@@ -1,0 +1,9 @@
+Is it better to do the memory test with real allocation?
+
+Make softboot configurable via watchdog.conf.
+
+Test which applications are running.
+
+RPC calls have to be taken from libtirpc to cope with their removal from glibc
+2.14.
+

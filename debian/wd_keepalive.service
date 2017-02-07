@@ -1,0 +1,13 @@
+[Unit]
+Description=watchdog keepalive daemon
+Before=watchdog.service shutdown.target
+Conflicts=watchdog.service shutdown.target
+
+[Service]
+Type=forking
+EnvironmentFile=/etc/default/watchdog
+ExecStartPre=/bin/sh -c '[ -z "${watchdog_module}" ] || [ "${watchdog_module}" = "none" ] || /sbin/modprobe $watchdog_module'
+ExecStartPre=-/bin/systemctl reset-failed watchdog.service
+ExecStart=/usr/sbin/wd_keepalive $watchdog_options
+ExecStartPost=/bin/sh -c 'ln -s /var/run/wd_keepalive.pid /run/sendsigs.omit.d/wd_keepalive.pid'
+ExecStopPost=/bin/sh -c 'rm -f /run/sendsigs.omit.d/wd_keepalive.pid'

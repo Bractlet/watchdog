@@ -1,0 +1,88 @@
+# Danish translation watchdog.
+# Copyright (C) 2014 watchdog & nedenstående oversættere.
+# This file is distributed under the same license as the watchdog package.
+# Joe Hansen <joedalton2@yahoo.dk>, 2011, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: watchdog\n"
+"Report-Msgid-Bugs-To: watchdog@packages.debian.org\n"
+"POT-Creation-Date: 2014-11-10 03:23+0100\n"
+"PO-Revision-Date: 2014-11-26 22:21+0100\n"
+"Last-Translator: Joe Hansen <joedalton2@yahoo.dk>\n"
+"Language-Team: Danish <debian-l10n-danish@lists.debian.org>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid "Start watchdog at boot time?"
+msgstr "Igangsæt watchdog ved opstart?"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"Please specify whether watchdog should be started as part of the boot "
+"process. This can be changed later by editing /etc/default/watchdog."
+msgstr ""
+"Angiv venligst hvorvidt watchdog skal igangsættes som en del af "
+"opstartsprocessen. Dette kan ændres senere ved at redigere /etc/default/"
+"watchdog."
+
+#. Type: boolean
+#. Description
+#: ../templates:3001
+msgid "Start wd_keepalive after stopping watchdog?"
+msgstr "Start wd_keepalive efter stop af watchdog?"
+
+#. Type: boolean
+#. Description
+#: ../templates:3001
+msgid ""
+"Please specify whether stopping watchdog should start wd_keepalive to keep "
+"on triggering the watchdog device. This can be changed later by editing /etc/"
+"default/watchdog."
+msgstr ""
+"Angiv venligst hvorvidt stop af watchdog skal starte wd_keepalive for "
+"fortsat at udløse watchdog-enheden. Dette kan ændres senere ved at redigere "
+"/etc/default/watchdog."
+
+#. Type: boolean
+#. Description
+#: ../templates:4001
+msgid "Restart watchdog on upgrades?"
+msgstr "Genstart watchdog ved opgraderinger?"
+
+#. Type: boolean
+#. Description
+#: ../templates:4001
+msgid ""
+"If the kernel is configured with the CONFIG_WATCHDOG_NOWAYOUT option (which "
+"is not the default setting), restarting watchdog will cause a spurious "
+"reboot (the kernel will assume that the watchdog daemon crashed)."
+msgstr ""
+"Hvis kernen er konfigureret med tilvalget CONFIG_WATCHDOG_NOWAYOUT (som ikke "
+"er standardindstillingen) vil genstart af watchdog medføre en falsk genstart "
+"(kernen vil antage at watchdog-dæmonen brød ned)."
+
+#. Type: string
+#. Description
+#: ../templates:5001
+msgid "Watchdog module to preload:"
+msgstr "Watchdog-modul at præindlæse:"
+
+#. Type: string
+#. Description
+#: ../templates:5001
+msgid ""
+"Please choose which watchdog module should be preloaded before starting "
+"watchdog. The 'softdog' module should be suited for all installations. Enter "
+"'none' if you don't want the script to load a module."
+msgstr ""
+"Vælg venligst hvilket watchdog-modul der skal præindlæses før start af "
+"watchdog. Modulet »softdog« bør være egnet for alle installationer. Indtast "
+"»none« (ingen) hvis du ikke ønsker, at skriptet skal indlæse et modul."

@@ -1,0 +1,94 @@
+#!/bin/sh
+#/etc/init.d/wd_keepalive: start wd_keepalive daemon.
+
+### BEGIN INIT INFO
+# Provides:          wd_keepalive
+# Short-Description: Start watchdog keepalive daemon
+# Required-Start:    $remote_fs
+# Required-Stop:     $remote_fs
+# X-Start-Before:    $all
+# Default-Start:     2 3 4 5
+# Default-Stop:      
+### END INIT INFO
+
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
+
+test -x /usr/sbin/wd_keepalive || exit 0
+
+# For configuration of the init script use the file
+# /etc/default/watchdog, do not edit this init script.
+
+# Set run_watchdog to 1 to start watchdog or 0 to disable it.
+run_watchdog=0
+
+# Specify additional watchdog options here (see manpage).
+watchdog_options=""
+
+# Specify module to load
+watchdog_module="none"
+
+[ -e /etc/default/watchdog ] && . /etc/default/watchdog
+
+KEEPALIVE_NAME=wd_keepalive
+KEEPALIVE_DAEMON=/usr/sbin/wd_keepalive
+
+STOP_RETRY_SCHEDULE='TERM/10/forever/KILL/1'
+
+. /lib/lsb/init-functions
+
+case "$1" in
+  start)
+    if [ $run_watchdog = 1 ]
+    then
+        [ "${watchdog_module:-none}" != "none" ] && /sbin/modprobe $watchdog_module
+	log_begin_msg "Starting watchdog keepalive daemon..."
+	start-stop-daemon --start --quiet --pidfile /var/run/$KEEPALIVE_NAME.pid \
+		--exec $KEEPALIVE_DAEMON -- $watchdog_options
+	log_end_msg $?
+
+	# tell sendsigs to ignore it
+        ln -s /var/run/$KEEPALIVE_NAME.pid /run/sendsigs.omit.d/$KEEPALIVE_NAME.pid
+
+    fi
+    ;;
+
+  stop)
+    if [ $run_watchdog = 1 ]
+    then
+	log_begin_msg "Stopping watchdog keepalive daemon..."
+	start-stop-daemon --stop --quiet --oknodo --retry $STOP_RETRY_SCHEDULE \
+		--pidfile /var/run/$KEEPALIVE_NAME.pid
+	log_end_msg $?
+
+	# remove the sendsigs omit file
+        rm -f /run/sendsigs.omit.d/$KEEPALIVE_NAME.pid
+    fi
+    ;;
+
+  status)
+    status_of_proc "$KEEPALIVE_DAEMON" "$KEEPALIVE_NAME" && exit 0 || exit $?
+    ;;
+
+  restart)
+    $0 force-reload
+    ;;
+
+  force-reload)
+    if [ $run_watchdog = 0 ]; then exit 0; fi
+    log_daemon_msg "Restarting $KEEPALIVE_NAME"
+    log_progress_msg "Stopping $KEEPALIVE_NAME daemon..."
+    start-stop-daemon --stop --pidfile /var/run/$KEEPALIVE_NAME.pid --quiet \
+        --retry $STOP_RETRY_SCHEDULE || log_end_msg $?
+    log_progress_msg "Starting $KEEPALIVE_NAME daemon..."
+    start-stop-daemon --start --quiet --pidfile /var/run/$KEEPALIVE_NAME.pid \
+        --exec $KEEPALIVE_DAEMON -- $watchdog_options
+    log_end_msg $?
+    ;;
+
+  *)
+    echo "Usage: /etc/init.d/wd_keepalive {start|stop|status|restart|force-reload}"
+    exit 1
+
+esac
+
+exit 0

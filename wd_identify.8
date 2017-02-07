@@ -1,0 +1,36 @@
+.TH WD_IDENTIFY 8 "June 2010"
+.UC 4
+.SH NAME
+wd_identify \- a simplified software watchdog daemon
+.SH SYNOPSIS
+.B wd_identify
+.RB [ \-c " \fIfilename\fR|" \-\-config\-file " \fIfilename\fR]"
+.SH DESCRIPTION
+This utility opens
+.IR /dev/watchdog
+and gets the identification string from the watchdog which then is printed. The
+device is closed afterwards.
+.PP
+The wd_identify tool can only be used without causing a reboot if your kernel
+is compiled with the
+.I CONFIG_WATCHDOG_NOWAYOUT
+option enabled.
+.PP 
+Watchdog and/or wd_keepalive may have to be stopped to make sure that
+wd_identify can access the watchdog device.
+.SH OPTIONS
+Available command line options are the following:
+.TP
+.BR \-c " \fIconfig-file\fR, " \-\-config\-file " \fIconfig-file"
+Use
+.I config-file
+as the configuration file instead of the default 
+.IR /etc/watchdog.conf .
+.SH FILES
+.TP
+.I /dev/watchdog  
+The watchdog device.
+.SH "SEE ALSO"
+.BR watchdog.conf (5)
+.TP
+.BR watchdog (8)

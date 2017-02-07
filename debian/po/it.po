@@ -1,0 +1,91 @@
+# Italian translation of watchdog debconf messages.
+# Copyright (C) 2014 watchdog package copyright holder
+# This file is distributed under the same license as the watchdog package.
+# Beatrice Torracca <beatricet@libero.it>, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: watchdog\n"
+"Report-Msgid-Bugs-To: watchdog@packages.debian.org\n"
+"POT-Creation-Date: 2014-11-10 03:23+0100\n"
+"PO-Revision-Date: 2014-11-26 08:11+0200\n"
+"Last-Translator: Beatrice Torracca <beatricet@libero.it>\n"
+"Language-Team: Italian <debian-l10n-italian@lists.debian.org>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.7.1\n"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid "Start watchdog at boot time?"
+msgstr "Far partire watchdog all'avvio?"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"Please specify whether watchdog should be started as part of the boot "
+"process. This can be changed later by editing /etc/default/watchdog."
+msgstr ""
+"Specificare se watchdog debba essere fatto partire come parte del processo "
+"di avvio. Questa impostazione può essere cambiata in un secondo momento "
+"modificando /etc/default/watchdog."
+
+#. Type: boolean
+#. Description
+#: ../templates:3001
+msgid "Start wd_keepalive after stopping watchdog?"
+msgstr "Far partire wd_keepalive dopo l'arresto di watchdog?"
+
+#. Type: boolean
+#. Description
+#: ../templates:3001
+msgid ""
+"Please specify whether stopping watchdog should start wd_keepalive to keep "
+"on triggering the watchdog device. This can be changed later by editing /etc/"
+"default/watchdog."
+msgstr ""
+"Specificare se all'arresto di watchdog debba essere avviato wd_keepalive per "
+"continuare a far scattare l'avvio del dispositivo watchdog. Questa "
+"impostazione può essere cambiata in un secondo momento modificando "
+"/etc/default/watchdog."
+
+#. Type: boolean
+#. Description
+#: ../templates:4001
+msgid "Restart watchdog on upgrades?"
+msgstr "Riavviare watchdog in caso di aggiornamenti?"
+
+#. Type: boolean
+#. Description
+#: ../templates:4001
+msgid ""
+"If the kernel is configured with the CONFIG_WATCHDOG_NOWAYOUT option (which "
+"is not the default setting), restarting watchdog will cause a spurious "
+"reboot (the kernel will assume that the watchdog daemon crashed)."
+msgstr ""
+"Se il kernel è configurato con l'opzione CONFIG_WATCHDOG_NOWAYOUT (che non è "
+"l'impostazione predefinita), il riavvio di watchdog causerà un riavvio "
+"spurio (il kernel penserà che il demone watchdog sia andato in crash)."
+
+#. Type: string
+#. Description
+#: ../templates:5001
+msgid "Watchdog module to preload:"
+msgstr "Modulo di watchdog da precaricare:"
+
+#. Type: string
+#. Description
+#: ../templates:5001
+msgid ""
+"Please choose which watchdog module should be preloaded before starting "
+"watchdog. The 'softdog' module should be suited for all installations. Enter "
+"'none' if you don't want the script to load a module."
+msgstr ""
+"Specificare quale modulo di watchdog debba essere precaricato prima dell'avvio "
+"di watchdog. Il modulo «softdog» dovrebbe essere adatto per tutte le "
+"installazioni. Inserire «none» se non si desidera che lo script carichi un "
+"modulo."
